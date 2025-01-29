@@ -14,7 +14,7 @@ in the browser, and `WavStreamPlayer` for queueing and streaming audio chunks to
 To install wavtools in a Webpack project;
 
 ```shell
-$ npm i wavtools --save
+npm i wavtools --save
 ```
 
 ```javascript
@@ -105,6 +105,33 @@ const trackOffset = await wavStreamPlayer.interrupt();
 trackOffset.trackId; // "my-track"
 trackOffset.offset; // sample number
 trackOffset.currentTime; // time in track
+```
+
+## AudioFilePlayer Quickstart
+
+```javascript
+import { AudioFilePlayer } from 'wavtools';
+
+const player = new AudioFilePlayer({ sampleRate: 44100 });
+
+// Connect to audio output
+await player.connect();
+
+// Load an audio file (supports URL string, ArrayBuffer, or Blob)
+await player.loadFile('path/to/audio.mp3');
+
+// Play the loaded audio
+player.play();
+
+// Pause playback
+player.pause();
+
+// Stop playback and reset position
+player.stop();
+
+// Get frequency data for visualization
+// Supports 'frequency', 'music', or 'voice' analysis types
+const frequencyData = player.getFrequencies('frequency', -100, -30);
 ```
 
 # Compilation

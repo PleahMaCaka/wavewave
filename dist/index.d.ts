@@ -2,5 +2,6 @@ import { AudioAnalysis } from './lib/analysis/audio_analysis.js';
 import { WavPacker } from './lib/wav_packer.js';
 import { WavStreamPlayer } from './lib/wav_stream_player.js';
 import { WavRecorder } from './lib/wav_recorder.js';
-export { AudioAnalysis, WavPacker, WavStreamPlayer, WavRecorder };
+import { AudioFilePlayer } from './lib/audio_file_player.js';
+export { AudioAnalysis, WavPacker, WavStreamPlayer, WavRecorder, AudioFilePlayer };
 //# sourceMappingURL=index.d.ts.map

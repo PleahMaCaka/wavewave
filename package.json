@@ -1,17 +1,17 @@
 {
   "name": "wavtools",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Record and stream WAV audio data in the browser across all platforms",
   "main": "index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/keithwhor/wavtools.git"
+    "url": "https://github.com/pleahmacaka/wavewave.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "npx tsc && npx esbuild index.js --bundle --outfile=script/wavtools.js --format=iife && npx esbuild index.js --bundle --minify --outfile=script/wavtools.min.js --format=iife"
+    "build": "npx tsc && npx esbuild index.js --bundle --outfile=script/wavtools.js --format=iife && npx esbuild index.js --bundle --minify --outfile=script/wavtools.min.js --format=iife"
   },
   "keywords": [
     "Wavtools",
@@ -24,5 +24,6 @@
   "devDependencies": {
     "esbuild": "^0.24.0",
     "typescript": "^5.6.3"
-  }
+  },
+  "packageManager": "pnpm@9.15.4"
 }
