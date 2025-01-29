@@ -1,5 +1,5 @@
 {
-  "name": "wavtools",
+  "name": "wavewave",
   "version": "0.2.0",
   "description": "Record and stream WAV audio data in the browser across all platforms",
   "main": "index.js",
