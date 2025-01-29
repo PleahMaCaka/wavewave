@@ -18,10 +18,10 @@ npm i wavtools --save
 ```
 
 ```javascript
-import { WavRecorder, WavStreamPlayer } from 'wavtools';
+import { WavRecorder, WavStreamPlayer } from "wavtools"
 
-const wavRecorder = new WavRecorder({ sampleRate: 24000 });
-wavRecorder.getStatus(); // "ended"
+const wavRecorder = new WavRecorder({ sampleRate: 24000 })
+wavRecorder.getStatus() // "ended"
 ```
 
 To use as a standalone script, download the [script/wavtools.js](/script/wavtools.js) or
@@ -31,107 +31,107 @@ To use as a standalone script, download the [script/wavtools.js](/script/wavtool
 <script src="/script/wavtools.js"></script>
 <script>
   // works as part of `window` object
-  const wavRecorder = new WavRecorder({ sampleRate: 24000 });
-  wavRecorder.getStatus(); // "ended"
+  const wavRecorder = new WavRecorder({ sampleRate: 24000 })
+  wavRecorder.getStatus() // "ended"
 </script>
 ```
 
 ## WavRecorder Quickstart
 
 ```javascript
-import { WavRecorder } from 'wavtools';
+import { WavRecorder } from "wavtools"
 
-const wavRecorder = new WavRecorder({ sampleRate: 24000 });
-wavRecorder.getStatus(); // "ended"
+const wavRecorder = new WavRecorder({ sampleRate: 24000 })
+wavRecorder.getStatus() // "ended"
 
 // request permissions, connect microphone
-await wavRecorder.begin();
-wavRecorder.getStatus(); // "paused"
+await wavRecorder.begin()
+wavRecorder.getStatus() // "paused"
 
 // Start recording
 // This callback will be triggered in chunks of 8192 samples by default
 // { mono, raw } are Int16Array (PCM16) mono & full channel data
 await wavRecorder.record((data) => {
-  const { mono, raw } = data;
-});
-wavRecorder.getStatus(); // "recording"
+  const { mono, raw } = data
+})
+wavRecorder.getStatus() // "recording"
 
 // Stop recording
-await wavRecorder.pause();
-wavRecorder.getStatus(); // "paused"
+await wavRecorder.pause()
+wavRecorder.getStatus() // "paused"
 
 // outputs "audio/wav" audio file
-const audio = await wavRecorder.save();
+const audio = await wavRecorder.save()
 
 // clears current audio buffer and starts recording
-await wavRecorder.clear();
-await wavRecorder.record();
+await wavRecorder.clear()
+await wavRecorder.record()
 
 // get data for visualization
-const frequencyData = wavRecorder.getFrequencies();
+const frequencyData = wavRecorder.getFrequencies()
 
 // Stop recording, disconnects microphone, output file
-await wavRecorder.pause();
-const finalAudio = await wavRecorder.end();
+await wavRecorder.pause()
+const finalAudio = await wavRecorder.end()
 
 // Listen for device change; e.g. if somebody disconnects a microphone
 // deviceList is array of MediaDeviceInfo[] + `default` property
-wavRecorder.listenForDeviceChange((deviceList) => {});
+wavRecorder.listenForDeviceChange((deviceList) => {})
 ```
 
 ## WavStreamPlayer Quickstart
 
 ```javascript
-import { WavStreamPlayer } from '/src/lib/wavtools/index.js';
+import { WavStreamPlayer } from "/src/lib/wavtools/index.js"
 
-const wavStreamPlayer = new WavStreamPlayer({ sampleRate: 24000 });
+const wavStreamPlayer = new WavStreamPlayer({ sampleRate: 24000 })
 
 // Connect to audio output
-await wavStreamPlayer.connect();
+await wavStreamPlayer.connect()
 
 // Create 1s of empty PCM16 audio
-const audio = new Int16Array(24000);
+const audio = new Int16Array(24000)
 // Queue 3s of audio, will start playing immediately
-wavStreamPlayer.add16BitPCM(audio, 'my-track');
-wavStreamPlayer.add16BitPCM(audio, 'my-track');
-wavStreamPlayer.add16BitPCM(audio, 'my-track');
+wavStreamPlayer.add16BitPCM(audio, "my-track")
+wavStreamPlayer.add16BitPCM(audio, "my-track")
+wavStreamPlayer.add16BitPCM(audio, "my-track")
 
 // get data for visualization
-const frequencyData = wavStreamPlayer.getFrequencies();
+const frequencyData = wavStreamPlayer.getFrequencies()
 
 // Interrupt the audio (halt playback) at any time
 // To restart, need to call .add16BitPCM() again
-const trackOffset = await wavStreamPlayer.interrupt();
-trackOffset.trackId; // "my-track"
-trackOffset.offset; // sample number
-trackOffset.currentTime; // time in track
+const trackOffset = await wavStreamPlayer.interrupt()
+trackOffset.trackId // "my-track"
+trackOffset.offset // sample number
+trackOffset.currentTime // time in track
 ```
 
 ## AudioFilePlayer Quickstart
 
 ```javascript
-import { AudioFilePlayer } from 'wavtools';
+import { AudioFilePlayer } from "wavtools"
 
-const player = new AudioFilePlayer({ sampleRate: 44100 });
+const player = new AudioFilePlayer({ sampleRate: 44100 })
 
 // Connect to audio output
-await player.connect();
+await player.connect()
 
 // Load an audio file (supports URL string, ArrayBuffer, or Blob)
-await player.loadFile('path/to/audio.mp3');
+await player.loadFile("path/to/audio.mp3")
 
 // Play the loaded audio
-player.play();
+player.play()
 
 // Pause playback
-player.pause();
+player.pause()
 
 // Stop playback and reset position
-player.stop();
+player.stop()
 
 // Get frequency data for visualization
 // Supports 'frequency', 'music', or 'voice' analysis types
-const frequencyData = player.getFrequencies('frequency', -100, -30);
+const frequencyData = player.getFrequencies("frequency", -100, -30)
 ```
 
 # Compilation
