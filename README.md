@@ -1,6 +1,6 @@
-# wavtools
+# wavewave
 
-wavtools is a library for both recording and streaming Waveform Audio (.wav) data
+wavewave is a library for both recording and streaming Waveform Audio (.wav) data
 in the browser. It is intended for managing PCM16 audio streams directly.
 
 This is a fork of open source, MIT licensed tooling initially
@@ -11,14 +11,14 @@ in the browser, and `WavStreamPlayer` for queueing and streaming audio chunks to
 
 ## Installation and usage
 
-To install wavtools in a Webpack project;
+To install wavewave in a Webpack project;
 
 ```shell
-npm i wavtools --save
+npm i wavewave --save
 ```
 
 ```javascript
-import { WavRecorder, WavStreamPlayer } from "wavtools"
+import { WavRecorder, WavStreamPlayer, AudioFilePlayer } from "wavewave"
 
 const wavRecorder = new WavRecorder({ sampleRate: 24000 })
 wavRecorder.getStatus() // "ended"
@@ -39,7 +39,7 @@ To use as a standalone script, download the [script/wavtools.js](/script/wavtool
 ## WavRecorder Quickstart
 
 ```javascript
-import { WavRecorder } from "wavtools"
+import { WavRecorder } from "wavewave"
 
 const wavRecorder = new WavRecorder({ sampleRate: 24000 })
 wavRecorder.getStatus() // "ended"
@@ -82,7 +82,7 @@ wavRecorder.listenForDeviceChange((deviceList) => {})
 ## WavStreamPlayer Quickstart
 
 ```javascript
-import { WavStreamPlayer } from "/src/lib/wavtools/index.js"
+import { WavStreamPlayer } from "wavewave"
 
 const wavStreamPlayer = new WavStreamPlayer({ sampleRate: 24000 })
 
@@ -110,7 +110,7 @@ trackOffset.currentTime // time in track
 ## AudioFilePlayer Quickstart
 
 ```javascript
-import { AudioFilePlayer } from "wavtools"
+import { AudioFilePlayer } from "wavewave"
 
 const player = new AudioFilePlayer({ sampleRate: 44100 })
 
@@ -137,7 +137,7 @@ const frequencyData = player.getFrequencies("frequency", -100, -30)
 # Compilation
 
 When modifying the repository, to create appropriate TypeScript types and
-JavaScript bundles, use `npm run compile`.
+JavaScript bundles, use `npm run build`.
 
 # Acknowledgements and contact
 
